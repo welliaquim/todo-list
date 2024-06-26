@@ -1,19 +1,21 @@
 import { useState } from "react";
 
-import { Task } from "../App";
-
-interface TaskCreatorProps {
-  setToDoArr: React.Dispatch<React.SetStateAction<Task[]>>;
-  toDoArr: Task[];
-}
+import { Task, TaskCreatorProps } from "../utils/interfaces";
 
 const TaskCreator: React.FC<TaskCreatorProps> = ({ toDoArr, setToDoArr }) => {
   const [taskText, setTaskText] = useState<string>("");
+  const [taskId, setTaskId] = useState<number>(1);
 
   const createNewTask = () => {
-    const newTask: Task = { task: taskText };
+    const newTask: Task = {
+      id: taskId,
+      taskInfo: taskText,
+      completed: false,
+    };
+
     taskText !== "" && taskText !== " " && setToDoArr([...toDoArr, newTask]);
     setTaskText("");
+    setTaskId(taskId + 1);
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -30,7 +32,13 @@ const TaskCreator: React.FC<TaskCreatorProps> = ({ toDoArr, setToDoArr }) => {
             createNewTask();
           }}
         ></button>
-        <input type="text" placeholder="Create a new todo..." value={taskText} onChange={handleInputChange} />
+        <input
+          type="text"
+          placeholder="Create a new todo..."
+          value={taskText}
+          onChange={handleInputChange}
+          className="focus:outline-none"
+        />
       </div>
     </div>
   );

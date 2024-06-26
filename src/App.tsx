@@ -4,9 +4,7 @@ import Header from "./components/Header";
 import TaskCreator from "./components/TaskCreator";
 import CreatedTasks from "./components/CreatedTasks";
 import Footer from "./components/Footer";
-export interface Task {
-  task: string;
-}
+import { Task } from "./utils/interfaces";
 
 function App() {
   const [toDoArr, setToDoArr] = useState<Task[]>([]);
@@ -19,7 +17,7 @@ function App() {
 
           <TaskCreator toDoArr={toDoArr} setToDoArr={setToDoArr} />
 
-          <CreatedTasks toDoArr={toDoArr} />
+          <CreatedTasks toDoArr={toDoArr} setToDoArr={setToDoArr} />
 
           <Footer />
         </div>
