@@ -3,6 +3,7 @@ import { TaskCreatorProps } from "../utils/interfaces";
 import Card from "./card";
 import CheckButton from "./CheckButton";
 import { DragDropContext, Droppable, Draggable, DropResult } from "react-beautiful-dnd";
+import { selectStateTask } from "../utils/tasksFilter";
 
 const CreatedTasks: React.FC<TaskCreatorProps> = ({ toDoArr, setToDoArr }) => {
   const [filterOption, setFilterOption] = useState<string>("All");
@@ -18,19 +19,6 @@ const CreatedTasks: React.FC<TaskCreatorProps> = ({ toDoArr, setToDoArr }) => {
     setToDoArr(updatedToDoArr);
   };
 
-  const selectStateTask = () => {
-    switch (filterOption) {
-      case "All":
-        return toDoArr;
-      case "Active":
-        return toDoArr.filter((task) => !task.completed);
-      case "Completed":
-        return toDoArr.filter((task) => task.completed);
-      default:
-        throw new Error(`Invalid filter option: ${filterOption}`);
-    }
-  };
-
   const onDragEnd = (result: DropResult) => {
     if (!result.destination) return;
 
@@ -41,7 +29,7 @@ const CreatedTasks: React.FC<TaskCreatorProps> = ({ toDoArr, setToDoArr }) => {
     setToDoArr(reorderedTasks);
   };
 
-  const filteredTasks = selectStateTask();
+  const filteredTasks = selectStateTask(filterOption, toDoArr);
 
   return (
     <div className="mt-6 w-full shadow-[0_2px_18px_0px_#c8c8c8] bg-white rounded-md">
@@ -89,18 +77,30 @@ const CreatedTasks: React.FC<TaskCreatorProps> = ({ toDoArr, setToDoArr }) => {
         </Droppable>
       </DragDropContext>
       <Card>
-        <div className="flex flex-row justify-between w-full text-gray-400">
-          <p>{uncompletedTasks} items left</p>
-          <div className="hidden lg:flex">
-            <div className="flex justify-center gap-2 text-gray-400 font-bold">
-              <button onClick={() => setFilterOption("All")}>All</button>
-              <button onClick={() => setFilterOption("Active")}>Active</button>
-              <button className="active:text-blue-500" onClick={() => setFilterOption("Completed")}>
+        <div className="flex flex-row justify-between w-full text-gray-400 text-nowrap">
+          <p className="text-sm">{uncompletedTasks} items left</p>
+          <div className="relative top-[100px] lg:flex lg:static">
+            <div className="flex justify-center gap-2 text-gray-400 font-bold ">
+              <button onClick={() => setFilterOption("All")} className={filterOption === "All" ? "text-blue-500" : ""}>
+                All
+              </button>
+              <button
+                onClick={() => setFilterOption("Active")}
+                className={filterOption === "Active" ? "text-blue-500" : ""}
+              >
+                Active
+              </button>
+              <button
+                onClick={() => setFilterOption("Completed")}
+                className={filterOption === "Completed" ? "text-blue-500" : ""}
+              >
                 Completed
               </button>
             </div>
           </div>
-          <button type="reset">Clear Completed</button>
+          <button type="reset" className="text-sm">
+            Clear Completed
+          </button>
         </div>
       </Card>
     </div>

@@ -20,3 +20,7 @@ export interface ButtonProps {
   onTaskCompleted: (taskId: number) => void;
   completed: boolean;
 }
+
+export interface FooterProps {
+  toDoArr: Task[];
+}
