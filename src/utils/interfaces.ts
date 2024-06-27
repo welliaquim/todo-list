@@ -25,11 +25,10 @@ export interface ButtonProps {
 }
 
 export interface FooterProps {
-  toDoArr: Task[];
   darkTheme: boolean;
 }
 
 export interface DarkTheme {
   darkTheme: boolean;
-  setDarkTheme?: React.Dispatch<React.SetStateAction<boolean>>;
+  setDarkTheme: React.Dispatch<React.SetStateAction<boolean>>;
 }
