@@ -15,16 +15,16 @@ function App() {
     { id: 5, taskInfo: "Pick up groceries", completed: false },
     { id: 6, taskInfo: "Complete Todo App on Frontend Mentor", completed: false },
   ]);
-  const [darkTheme, setDarkTheme] = useState<boolean>(false);
+  const [darkTheme, setDarkTheme] = useState<boolean>(true);
 
   return (
     <>
       <div
         className={`flex flex-col items-center justify-center px-6 py-14 font-josefin bg-contain ${
           darkTheme
-            ? "bg-[url('/src/assets/images/bg-mobile-dark.jpg')] bg-very-dark-blue"
-            : "bg-[url('/src/assets/images/bg-mobile-light.jpg')] bg-white"
-        } md:bg-[url('/src/assets/images/bg-desktop-light.jpg')] bg-no-repeat bg-very-darker-grayish-blue`}
+            ? "sm:bg-[url('/src/assets/images/bg-mobile-dark.jpg')] bg-very-dark-blue md:bg-[url('/src/assets/images/bg-desktop-dark.jpg')]"
+            : "sm:bg-[url('/src/assets/images/bg-mobile-light.jpg')] bg-white md:bg-[url('/src/assets/images/bg-desktop-light.jpg')]"
+        }  bg-no-repeat`}
       >
         <div className={`w-full max-w-[500px]`}>
           <Header darkTheme={darkTheme} setDarkTheme={setDarkTheme} />
