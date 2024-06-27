@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import { Task, TaskCreatorProps } from "../utils/interfaces";
 
-const TaskCreator: React.FC<TaskCreatorProps> = ({ toDoArr, setToDoArr }) => {
+const TaskCreator: React.FC<TaskCreatorProps> = ({ toDoArr, setToDoArr, darkTheme }) => {
   const [taskText, setTaskText] = useState<string>("");
   const [taskId, setTaskId] = useState<number>(1);
 
@@ -23,10 +23,10 @@ const TaskCreator: React.FC<TaskCreatorProps> = ({ toDoArr, setToDoArr }) => {
   };
 
   return (
-    <div className={`flex flex-col w-full rounded-md`}>
-      <div className="flex gap-4 bg-white px-6 py-4 rounded-md">
+    <div className="flex flex-col w-full rounded-md">
+      <div className={`flex gap-4 ${darkTheme ? "bg-desaturated-blue" : "bg-white"} px-6 py-4 rounded-md`}>
         <button
-          className={"block h-6 w-6 rounded-full border"}
+          className={`block h-6 w-6 rounded-full border ${darkTheme ? "border-gray-700" : "border-inherit"}`}
           title="Create New Task"
           onClick={() => {
             createNewTask();
@@ -37,7 +37,7 @@ const TaskCreator: React.FC<TaskCreatorProps> = ({ toDoArr, setToDoArr }) => {
           placeholder="Create a new todo..."
           value={taskText}
           onChange={handleInputChange}
-          className="focus:outline-none"
+          className={`focus:outline-none ${darkTheme ? "bg-desaturated-blue" : "bg-white"}`}
         />
       </div>
     </div>

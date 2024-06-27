@@ -5,7 +5,7 @@ import CheckButton from "./CheckButton";
 import { DragDropContext, Droppable, Draggable, DropResult } from "react-beautiful-dnd";
 import { selectStateTask } from "../utils/tasksFilter";
 
-const CreatedTasks: React.FC<TaskCreatorProps> = ({ toDoArr, setToDoArr }) => {
+const CreatedTasks: React.FC<TaskCreatorProps> = ({ toDoArr, setToDoArr, darkTheme }) => {
   const [filterOption, setFilterOption] = useState<string>("All");
   const uncompletedTasks = toDoArr.filter((task) => !task.completed).length;
 
@@ -16,6 +16,11 @@ const CreatedTasks: React.FC<TaskCreatorProps> = ({ toDoArr, setToDoArr }) => {
 
   const deleteSelectedTask = (taskId: number) => {
     const updatedToDoArr = toDoArr.filter((task) => task.id !== taskId);
+    setToDoArr(updatedToDoArr);
+  };
+
+  const deleteCompletedTask = (taskToDelete: boolean) => {
+    const updatedToDoArr = toDoArr.filter((task) => task.completed !== taskToDelete);
     setToDoArr(updatedToDoArr);
   };
 
@@ -32,7 +37,11 @@ const CreatedTasks: React.FC<TaskCreatorProps> = ({ toDoArr, setToDoArr }) => {
   const filteredTasks = selectStateTask(filterOption, toDoArr);
 
   return (
-    <div className="mt-6 w-full shadow-[0_2px_18px_0px_#c8c8c8] bg-white rounded-md">
+    <div
+      className={`mt-6 w-full  ${
+        darkTheme ? "bg-desaturated-blue shadow-[0_2px_18px_0px_#101010]" : "bg-white shadow-[0_2px_18px_0px_#c8c8c8]"
+      } rounded-md`}
+    >
       <DragDropContext onDragEnd={onDragEnd}>
         <Droppable droppableId="droppable">
           {(provided) => (
@@ -47,16 +56,23 @@ const CreatedTasks: React.FC<TaskCreatorProps> = ({ toDoArr, setToDoArr }) => {
                       ref={provided.innerRef}
                     >
                       <div className="flex flex-row">
-                        <div className="flex gap-4 bg-white px-6 py-4 w-full rounded-md group">
+                        <div
+                          className={`flex gap-4 ${
+                            darkTheme ? "bg-desaturated-blue" : "bg-white"
+                          } px-6 py-4 w-full rounded-md group`}
+                        >
                           <CheckButton
                             title={"Check this task"}
                             onTaskCompleted={toggleTaskCompletion}
                             taskId={task.id}
                             completed={task.completed}
+                            darkTheme={darkTheme}
                           />
                           <div className="flex flex-row justify-between w-full">
                             <div className="flex flex-row items-center text-gray-500">
-                              <p className={`${task.completed ? "text-gray-200 line-through" : ""}`}>{task.taskInfo}</p>
+                              <p className={`${task.completed ? "text-gray-200 line-through" : ""} text-sm `}>
+                                {task.taskInfo}
+                              </p>
                             </div>
                           </div>
                           <button
@@ -66,7 +82,7 @@ const CreatedTasks: React.FC<TaskCreatorProps> = ({ toDoArr, setToDoArr }) => {
                           ></button>
                         </div>
                       </div>
-                      <hr className="border border-solid border-gray-300 w-full" />
+                      <hr className={`${darkTheme ? "border-gray-700" : "border-gray-200"} w-full`} />
                     </li>
                   )}
                 </Draggable>
@@ -76,7 +92,7 @@ const CreatedTasks: React.FC<TaskCreatorProps> = ({ toDoArr, setToDoArr }) => {
           )}
         </Droppable>
       </DragDropContext>
-      <Card>
+      <Card darkTheme={darkTheme}>
         <div className="flex flex-row justify-between w-full text-gray-400 text-nowrap">
           <p className="text-sm">{uncompletedTasks} items left</p>
           <div className="relative top-[100px] lg:flex lg:static">
@@ -98,7 +114,7 @@ const CreatedTasks: React.FC<TaskCreatorProps> = ({ toDoArr, setToDoArr }) => {
               </button>
             </div>
           </div>
-          <button type="reset" className="text-sm">
+          <button type="reset" className="text-sm" onClick={() => deleteCompletedTask(true)}>
             Clear Completed
           </button>
         </div>

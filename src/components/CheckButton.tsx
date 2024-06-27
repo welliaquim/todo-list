@@ -1,12 +1,14 @@
 import { ButtonProps } from "../utils/interfaces";
 
-const CheckButton: React.FC<ButtonProps> = ({ title, onTaskCompleted, taskId, completed }) => {
+const CheckButton: React.FC<ButtonProps> = ({ title, onTaskCompleted, taskId, completed, darkTheme }) => {
   const handleButtonBg = () => {
     if (completed) return "bg-gradient-to-br from-blue-600/70 to-purple-600/60";
   };
   return (
     <button
-      className={` flex justify-center items-center h-6 w-7 rounded-full border ${handleButtonBg()} hover:border-t-blue-600/[.70] hover:border-l-blue-600/[.70] hover:border-r-purple-600/[.60] hover:border-b-purple-600/[.60]`}
+      className={`flex justify-center items-center h-6 w-7 rounded-full border ${
+        darkTheme ? "border-gray-700" : "border-inherit"
+      } ${handleButtonBg()} hover:border-t-blue-600/[.70] hover:border-l-blue-600/[.70] hover:border-r-purple-600/[.60] hover:border-b-purple-600/[.60]`}
       title={title}
       onClick={() => {
         onTaskCompleted(taskId);
