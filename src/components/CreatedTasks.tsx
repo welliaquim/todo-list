@@ -95,30 +95,28 @@ const CreatedTasks: React.FC<TaskCreatorProps> = ({ toDoArr, setToDoArr, darkThe
       <Card darkTheme={darkTheme}>
         <div className="flex flex-row justify-between w-full text-gray-400 text-nowrap">
           <p className="text-sm">{uncompletedTasks} items left</p>
-          <div className="relative top-[100px] lg:flex lg:static">
-            <div className="flex justify-center gap-2 text-gray-400 font-bold ">
-              <button onClick={() => setFilterOption("All")} className={filterOption === "All" ? "text-blue-500" : ""}>
-                All
-              </button>
-              <button
-                onClick={() => setFilterOption("Active")}
-                className={filterOption === "Active" ? "text-blue-500" : ""}
-              >
-                Active
-              </button>
-              <button
-                onClick={() => setFilterOption("Completed")}
-                className={filterOption === "Completed" ? "text-blue-500" : ""}
-              >
-                Completed
-              </button>
-            </div>
-          </div>
+          <div className="relative top-[100px] lg:flex lg:static"></div>
           <button type="reset" className="text-sm" onClick={() => deleteCompletedTask(true)}>
             Clear Completed
           </button>
         </div>
       </Card>
+      <hr className={`${darkTheme ? "border-gray-700" : "border-gray-200"} w-full`} />
+
+      <div className="flex justify-center gap-2 text-gray-400 font-bold py-4">
+        <button onClick={() => setFilterOption("All")} className={filterOption === "All" ? "text-blue-500" : ""}>
+          All
+        </button>
+        <button onClick={() => setFilterOption("Active")} className={filterOption === "Active" ? "text-blue-500" : ""}>
+          Active
+        </button>
+        <button
+          onClick={() => setFilterOption("Completed")}
+          className={filterOption === "Completed" ? "text-blue-500" : ""}
+        >
+          Completed
+        </button>
+      </div>
     </div>
   );
 };

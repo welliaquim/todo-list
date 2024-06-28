@@ -562,8 +562,8 @@ video {
   top: 100px;
 }
 
-.mt-36 {
-  margin-top: 9rem;
+.mt-12 {
+  margin-top: 3rem;
 }
 
 .mt-6 {
@@ -580,6 +580,10 @@ video {
 
 .h-6 {
   height: 1.5rem;
+}
+
+.min-h-screen {
+  min-height: 100vh;
 }
 
 .w-4 {
@@ -681,6 +685,14 @@ video {
 .bg-white {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+}
+
+.bg-\[url\(\'\/src\/assets\/images\/bg-mobile-dark\.jpg\'\)\] {
+  background-image: url('/src/assets/images/bg-mobile-dark.jpg');
+}
+
+.bg-\[url\(\'\/src\/assets\/images\/bg-mobile-light\.jpg\'\)\] {
+  background-image: url('/src/assets/images/bg-mobile-light.jpg');
 }
 
 .bg-\[url\(\'\/src\/assets\/images\/icon-cross\.svg\'\)\] {
@@ -844,16 +856,6 @@ video {
   opacity: 1;
 }
 
-@media (min-width: 640px) {
-  .sm\:bg-\[url\(\'\/src\/assets\/images\/bg-mobile-dark\.jpg\'\)\] {
-    background-image: url('/src/assets/images/bg-mobile-dark.jpg');
-  }
-
-  .sm\:bg-\[url\(\'\/src\/assets\/images\/bg-mobile-light\.jpg\'\)\] {
-    background-image: url('/src/assets/images/bg-mobile-light.jpg');
-  }
-}
-
 @media (min-width: 768px) {
   .md\:bg-\[url\(\'\/src\/assets\/images\/bg-desktop-dark\.jpg\'\)\] {
     background-image: url('/src/assets/images/bg-desktop-dark.jpg');
@@ -867,10 +869,6 @@ video {
 @media (min-width: 1024px) {
   .lg\:static {
     position: static;
-  }
-
-  .lg\:mt-56 {
-    margin-top: 14rem;
   }
 
   .lg\:flex {

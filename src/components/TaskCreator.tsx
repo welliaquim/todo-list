@@ -22,9 +22,21 @@ const TaskCreator: React.FC<TaskCreatorProps> = ({ toDoArr, setToDoArr, darkThem
     setTaskText(e.target.value);
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      createNewTask();
+    }
+  };
+
   return (
     <div className="flex flex-col w-full rounded-md">
-      <div className={`flex gap-4 ${darkTheme ? "bg-desaturated-blue" : "bg-white"} px-6 py-4 rounded-md`}>
+      <div
+        className={`flex gap-4 ${
+          darkTheme
+            ? "bg-desaturated-blue shadow-[0_2px_18px_0px_#101010] text-white"
+            : "bg-white shadow-[0_2px_18px_0px_#c8c8c8]"
+        } px-6 py-4 rounded-md`}
+      >
         <button
           className={`block h-6 w-6 rounded-full border ${darkTheme ? "border-gray-700" : "border-inherit"}`}
           title="Create New Task"
@@ -38,6 +50,7 @@ const TaskCreator: React.FC<TaskCreatorProps> = ({ toDoArr, setToDoArr, darkThem
           value={taskText}
           onChange={handleInputChange}
           className={`focus:outline-none ${darkTheme ? "bg-desaturated-blue" : "bg-white"}`}
+          onKeyDown={handleKeyDown}
         />
       </div>
     </div>

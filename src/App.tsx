@@ -22,9 +22,9 @@ function App() {
       <div
         className={`flex flex-col items-center justify-center px-6 py-14 font-josefin bg-contain ${
           darkTheme
-            ? "sm:bg-[url('/src/assets/images/bg-mobile-dark.jpg')] bg-very-dark-blue md:bg-[url('/src/assets/images/bg-desktop-dark.jpg')]"
-            : "sm:bg-[url('/src/assets/images/bg-mobile-light.jpg')] bg-white md:bg-[url('/src/assets/images/bg-desktop-light.jpg')]"
-        }  bg-no-repeat`}
+            ? "bg-[url('/src/assets/images/bg-mobile-dark.jpg')] bg-very-dark-blue md:bg-[url('/src/assets/images/bg-desktop-dark.jpg')]"
+            : "bg-[url('/src/assets/images/bg-mobile-light.jpg')] bg-white md:bg-[url('/src/assets/images/bg-desktop-light.jpg')]"
+        }  bg-no-repeat min-h-screen`}
       >
         <div className={`w-full max-w-[500px]`}>
           <Header darkTheme={darkTheme} setDarkTheme={setDarkTheme} />
