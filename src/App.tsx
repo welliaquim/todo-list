@@ -8,12 +8,12 @@ import { Task } from "./utils/interfaces";
 
 function App() {
   const [toDoArr, setToDoArr] = useState<Task[]>([
-    { id: 1, taskInfo: "Complete online JavaScript course", completed: true },
-    { id: 2, taskInfo: "Jog around the park 3x", completed: false },
-    { id: 3, taskInfo: "10 minutes meditation", completed: false },
-    { id: 4, taskInfo: "Read for 1 hour", completed: false },
-    { id: 5, taskInfo: "Pick up groceries", completed: false },
-    { id: 6, taskInfo: "Complete Todo App on Frontend Mentor", completed: false },
+    // { id: 1, taskInfo: "Complete online JavaScript course", completed: true },
+    // { id: 2, taskInfo: "Jog around the park 3x", completed: false },
+    // { id: 3, taskInfo: "10 minutes meditation", completed: false },
+    // { id: 4, taskInfo: "Read for 1 hour", completed: false },
+    // { id: 5, taskInfo: "Pick up groceries", completed: false },
+    // { id: 6, taskInfo: "Complete Todo App on Frontend Mentor", completed: false },
   ]);
   const [darkTheme, setDarkTheme] = useState<boolean>(true);
 

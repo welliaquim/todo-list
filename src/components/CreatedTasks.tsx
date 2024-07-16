@@ -27,9 +27,18 @@ const CreatedTasks: React.FC<TaskCreatorProps> = ({ toDoArr, setToDoArr, darkThe
   const onDragEnd = (result: DropResult) => {
     if (!result.destination) return;
 
+    const sourceIndex = result.source.index;
+    const destinationIndex = result.destination.index;
+
+    const sourceTaskId = filteredTasks[sourceIndex].id;
+    const destinationTaskId = filteredTasks[destinationIndex].id;
+
+    const sourceTaskIndex = toDoArr.findIndex((task) => task.id === sourceTaskId);
+    const destinationTaskIndex = toDoArr.findIndex((task) => task.id === destinationTaskId);
+
     const reorderedTasks = Array.from(toDoArr);
-    const [reorderedItem] = reorderedTasks.splice(result.source.index, 1);
-    reorderedTasks.splice(result.destination.index, 0, reorderedItem);
+    const [removed] = reorderedTasks.splice(sourceTaskIndex, 1);
+    reorderedTasks.splice(destinationTaskIndex, 0, removed);
 
     setToDoArr(reorderedTasks);
   };
